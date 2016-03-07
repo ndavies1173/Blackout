@@ -12,5 +12,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:id="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Login"
+        android:id="@+id/login_button"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/sign_up_button"
+        android:layout_alignStart="@+id/sign_up_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Sign_Up"
+        android:id="@+id/sign_up_button"
+        android:layout_below="@+id/login_button"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
