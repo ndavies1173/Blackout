@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,26 +9,127 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.uark.ndavies.blackout.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
+    <ViewFlipper
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/viewFlipper">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Login"
-        android:id="@+id/login_button"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/sign_up_button"
-        android:layout_alignStart="@+id/sign_up_button" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Sign_Up"
-        android:id="@+id/sign_up_button"
-        android:layout_below="@+id/login_button"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Login"
+                android:id="@+id/login_button"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/sign_up_button"
+                android:layout_alignStart="@+id/sign_up_button" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Sign_Up"
+                android:id="@+id/sign_up_button"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/email"
+                android:editable="false"
+                android:hint="E-Mail"
+                android:layout_above="@+id/pass"
+                android:layout_alignLeft="@+id/pass"
+                android:layout_alignStart="@+id/pass" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/pass"
+                android:editable="false"
+                android:password="true"
+                android:hint="Password"
+                android:layout_above="@+id/login_button"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/First_Name"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:hint="First Name" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Last_Name"
+                android:hint="Last Name"
+                android:layout_below="@+id/First_Name"
+                android:layout_alignLeft="@+id/First_Name"
+                android:layout_alignStart="@+id/First_Name" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/Email"
+                android:layout_below="@+id/Last_Name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26dp"
+                android:hint="E-Mail"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/Password"
+                android:textAlignment="center"
+                android:hint="Password"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/Pass_Confirm"
+                android:layout_alignStart="@+id/Pass_Confirm" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/Pass_Confirm"
+                android:hint="Confirm Password"
+                android:textAlignment="center"
+                android:layout_below="@+id/Password"
+                android:layout_alignLeft="@+id/Email"
+                android:layout_alignStart="@+id/Email" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Sign_Up"
+                android:id="@+id/Sign_Submit"
+                android:layout_marginTop="47dp"
+                android:layout_below="@+id/Pass_Confirm"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+</LinearLayout>
