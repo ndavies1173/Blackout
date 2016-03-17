@@ -13,6 +13,7 @@ import android.widget.ViewAnimator;
 import android.widget.ViewFlipper;
 import android.widget.EditText;
 import android.widget.Button;
+import android.content.Intent;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private Button login, sign_up;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.1.65:80/something/user_control.php";
+    private static final String URL = "http://192.168.1.65:80/php_scripts/user_control.php";
     private StringRequest request;
 
 
@@ -90,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         final Button sign_up_button = (Button) findViewById(R.id.sign_up_button);
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
-                //viewFlipper.showNext();
+                viewFlipper.showNext();
             }
         });
     }
