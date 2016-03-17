@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.names().get(0).equals("success")){
-                                Toast.makeText(getApplicationContext(), "Success " +jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "success " +jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), Home.class));
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "Error" +jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "error" +jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }){@Override
                     protected Map<String, String> getParams() throws AuthFailureError{
-                    HashMap<String, String> hashMap = new HashMap<>();
+                    HashMap<String, String> hashMap = new HashMap<String, String>();
                     hashMap.put("email", email.getText().toString());
                     hashMap.put("password", password.getText().toString());
 
@@ -94,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                viewFlipper.showNext();
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                //viewFlipper.showNext();
             }
         });
     }

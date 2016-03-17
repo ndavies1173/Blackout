@@ -3,4 +3,5 @@
     <string name="Login">Login</string>
     <string name="Sign_Up">Sign Up</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
