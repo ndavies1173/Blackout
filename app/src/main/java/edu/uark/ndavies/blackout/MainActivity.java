@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = (EditText) findViewById(R.id.Email);
+        email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.pass);
 
         requestQueue = Volley.newRequestQueue(this);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.names().get(0).equals("success")){
                                 Toast.makeText(getApplicationContext(), "success " +jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), Home.class));
+                                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), "error" +jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
