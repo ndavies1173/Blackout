@@ -32,10 +32,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText email, password;
-    private Button login, sign_up;
+    //Initializing variables
+    private EditText email, password, fname, lname, emailc, passwordc, confirm;
     private RequestQueue requestQueue;
-    private static final String URL = "http://192.168.1.65:80/php_scripts/user_control.php";
+    private static final String URL = "http://www.kanosthefallen.com/php_scripts/user_control.php";//URL for connection to database
     private StringRequest request;
 
 
@@ -44,17 +44,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //Set text field variables to corresponding text fields from layout
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.pass);
+        fname = (EditText) findViewById(R.id.First_Name);
+        lname = (EditText) findViewById(R.id.Last_Name);
+        emailc = (EditText) findViewById(R.id.emailc);
+        passwordc = (EditText) findViewById(R.id.passc);
+        confirm = (EditText) findViewById(R.id.PassConfirm);
 
         requestQueue = Volley.newRequestQueue(this);
 
+        //Button to get to MapActivity for testing
+        //HIDE OR DELETE IN FINAL BUILD
+        final Button Map = (Button) findViewById(R.id.map);
+        Map.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+            }
+        });
+        //HIDE OR DELETE IN FINAL BUILD
+
+        //Creating a ViewFlipper to show multiple views in same activity
         final ViewFlipper viewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        //Login Button with it's on click listener
         final Button login_button = (Button) findViewById(R.id.login_button);
         login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
+                //Creates a string to send to the URL as a POST method using the hash map to pull text from text fields and format it into a proper POST Call
                 request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -62,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.names().get(0).equals("success")){
                                 Toast.makeText(getApplicationContext(), "success " +jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                                //Successful login, Begin MapsActivity
                                 startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                             }
                             else{
@@ -77,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                }){@Override
+                }){@Override        //Pulls text from fields for sending to URL as POST
                     protected Map<String, String> getParams() throws AuthFailureError{
                     HashMap<String, String> hashMap = new HashMap<String, String>();
                     hashMap.put("email", email.getText().toString());
@@ -91,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //Sign Up Button on first screen shown, switches the ViewFlipper to the next view showing the sign up screen
         final Button sign_up_button = (Button) findViewById(R.id.sign_up_button);
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,5 +121,59 @@ public class MainActivity extends AppCompatActivity {
                 viewFlipper.showNext();
             }
         });
+
+        //Submit Button on sign up screen
+        //Same action as login button with more fields sent as POST and checks that password and confirm password are equal before sending request.
+        final Button Sign_submit = (Button) findViewById(R.id.Sign_Submit);
+        Sign_submit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                // Perform action on click
+                if (passwordc.getText().toString().equals(confirm.getText().toString())) {
+
+                    request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                if(jsonObject.names().get(0).equals("success")){
+                                    Toast.makeText(getApplicationContext(), "success " +jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), "error" +jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }){@Override
+                       protected Map<String, String> getParams() throws AuthFailureError{
+                        HashMap<String, String> hashMap = new HashMap<String, String>();
+                        hashMap.put("emailc", emailc.getText().toString());
+                        hashMap.put("passwordc", passwordc.getText().toString());
+                        hashMap.put("firstname", fname.getText().toString());
+                        hashMap.put("lastname", lname.getText().toString());
+
+                        return hashMap;
+
+                    }};
+
+                    requestQueue.add(request);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Passwords do NOT match", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
     }
+
 }
