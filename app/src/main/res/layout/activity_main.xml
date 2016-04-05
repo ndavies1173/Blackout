@@ -76,6 +76,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/emailc"
+                android:hint="E-Mail"
+                android:textAlignment="center"
+                android:layout_above="@+id/First_Name"
+                android:layout_alignLeft="@+id/PassConfirm"
+                android:layout_alignStart="@+id/PassConfirm" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -96,17 +107,6 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/emailc"
-                android:hint="E-Mail"
-                android:textAlignment="center"
-                android:layout_above="@+id/First_Name"
-                android:layout_alignLeft="@+id/PassConfirm"
-                android:layout_alignStart="@+id/PassConfirm" />
 
             <EditText
                 android:layout_width="wrap_content"

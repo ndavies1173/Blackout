@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private static final String URL = "http://www.kanosthefallen.com/php_scripts/user_control.php";//URL for connection to database
     private StringRequest request;
+    ViewFlipper viewFlipper;
 
 
     @Override
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         emailc = (EditText) findViewById(R.id.emailc);
         passwordc = (EditText) findViewById(R.id.passc);
         confirm = (EditText) findViewById(R.id.PassConfirm);
+        viewFlipper = (ViewFlipper)findViewById(R.id.viewFlipper);
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -174,6 +176,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(viewFlipper.getDisplayedChild() == 0){
+            super.onBackPressed();
+        }
+        else {
+            viewFlipper.setDisplayedChild(0);
+            return;
+        }
     }
 
 }
