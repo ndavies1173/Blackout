@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //Returns to default view on back pressed. If already on default view exits activity.
     @Override
     public void onBackPressed()
     {
